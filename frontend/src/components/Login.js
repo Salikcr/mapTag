@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import "./login.css";
 
 export default function Login({ setShowLogin, setCurrentUsername,myStorage }) {
-  const API = axios.create({baseURL:'https://maptag2.herokuapp.com/api' });
+  // const API = axios.create({baseURL:'https://localhost:8800/api' });
 
   const [error, setError] = useState(false);
   const usernameRef = useRef();
@@ -17,7 +17,7 @@ export default function Login({ setShowLogin, setCurrentUsername,myStorage }) {
       password: passwordRef.current.value,
     };
     try {
-      const res = await API.post("/users/login", user);
+      const res = await axios.post("/users/login", user);
       setCurrentUsername(res.data.username);
       myStorage.setItem('user', res.data.username);
       setShowLogin(false)

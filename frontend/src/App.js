@@ -9,7 +9,7 @@ import Login from "./components/Login";
 
 function App() {
 
-  const API = axios.create({baseURL:'https://maptag2.herokuapp.com/api' });
+  // const API = axios.create({baseURL:'https://localhost:8800/api' });
   const myStorage = window.localStorage;
   const [currentUsername, setCurrentUsername] = useState(myStorage.getItem("user"));
   const [pins, setPins] = useState([]);
@@ -51,7 +51,7 @@ function App() {
     };
 
     try {
-      const res = await API.post("/pins", newPin);
+      const res = await axios.post("/pins", newPin);
       setPins([...pins, res.data]);
       setNewPlace(null);
     } catch (err) {
@@ -62,7 +62,7 @@ function App() {
   useEffect(() => {
     const getPins = async () => {
       try {
-        const allPins = await API.get("/pins");
+        const allPins = await axios.get("/pins");
         setPins(allPins.data);
       } catch (err) {
         console.log(err);

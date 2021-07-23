@@ -5,7 +5,7 @@ import "./register.css";
 
 export default function Register({ setShowRegister }) {
 
-  const API = axios.create({baseURL:'https://maptag2.herokuapp.com/api' });
+  // const API = axios.create({baseURL:'https://localhost:8800/api' });
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -22,7 +22,7 @@ export default function Register({ setShowRegister }) {
     };
 
     try {
-      await API.post("/users/register", newUser);
+      await axios.post("/users/register", newUser);
       setError(false);
       setSuccess(true);
     } catch (err) {
