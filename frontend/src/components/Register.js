@@ -4,6 +4,9 @@ import { useRef, useState } from "react";
 import "./register.css";
 
 export default function Register({ setShowRegister }) {
+
+  const API = axios.create({baseURL:'https://maptag2.herokuapp.com/api' });
+
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const usernameRef = useRef();
@@ -19,7 +22,7 @@ export default function Register({ setShowRegister }) {
     };
 
     try {
-      await axios.post("/users/register", newUser);
+      await API.post("/users/register", newUser);
       setError(false);
       setSuccess(true);
     } catch (err) {
